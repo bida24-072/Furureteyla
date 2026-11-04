@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Future Teyla Watches, Game City, Gaborone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a class="logo" href="index.html">Future Teyla</a><div><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="cart.html">Cart <span class="cn">0</span></a></div></nav>
+<section class="hero">
+<div>
+<h1>Rolex and Richard Mille, turned in your hands</h1>
+<p>Future Teyla Watches at Game City, Gaborone. Rotate any watch in 3D, then order online and collect in store.</p>
+<a class="btn" href="shop.html">Shop watches</a>
+</div>
+<div class="stage" id="v"><span class="tag" id="vn"></span></div>
+</section>
+<section>
+<h2>Featured watches</h2>
+<div class="grid" id="feat"></div>
+</section>
+<section>
+<h2>Visit us</h2>
+<p class="m">Future Teyla Watches, Game City, Gaborone. Order online and we will confirm by WhatsApp.</p>
+</section>
+<footer>Future Teyla Watches, Game City, Gaborone</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="app.js"></script>
+<script>
+const V=viewer(document.getElementById('v')),W=P.filter(p=>p.t=='w'),vn=document.getElementById('vn');
+let i=0;const show=()=>{V.load(W[i]);vn.textContent=W[i].n};show();
+setInterval(()=>{i=(i+1)%W.length;show()},4500);
+document.getElementById('feat').innerHTML=[W[0],W[4],W[2]].map(card).join('');
+function view(id){const p=P.find(x=>x.id==id);i=W.indexOf(p);show()}
+</script>
+</body>
+</html>
