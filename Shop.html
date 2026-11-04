@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop, Future Teyla Watches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a class="logo" href="index.html">Future Teyla</a><div><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="cart.html">Cart <span class="cn">0</span></a></div></nav>
+<section>
+<h2>Shop</h2>
+<div class="stage" id="v"><span class="tag" id="vn">Choose View in 3D on any watch</span></div>
+<div class="filters">
+<button class="btn ghost on" data-f="all">All</button>
+<button class="btn ghost" data-f="w">Watches</button>
+<button class="btn ghost" data-f="a">Accessories</button>
+</div>
+<div class="grid" id="list"></div>
+</section>
+<footer>Future Teyla Watches, Game City, Gaborone</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="app.js"></script>
+<script>
+const V=viewer(document.getElementById('v')),vn=document.getElementById('vn'),L=document.getElementById('list');
+V.load(P[0]);
+function draw(f){L.innerHTML=P.filter(p=>f=='all'||p.t==f).map(card).join('')}
+function view(id){const p=P.find(x=>x.id==id);V.load(p);vn.textContent=p.n;document.getElementById('v').scrollIntoView({behavior:'smooth',block:'center'})}
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');draw(b.dataset.f)});
+draw('all');
+</script>
+</body>
+</html>
