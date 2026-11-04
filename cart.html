@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cart, Future Teyla Watches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a class="logo" href="index.html">Future Teyla</a><div><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="cart.html">Cart <span class="cn">0</span></a></div></nav>
+<section style="max-width:680px">
+<h2>Your cart</h2>
+<div id="ci"></div>
+<div class="total"><span>Total</span><span id="tot">P 0</span></div>
+<label for="nm">Your name</label>
+<input id="nm" autocomplete="name">
+<button class="btn" onclick="order()">Send order on WhatsApp</button>
+<p class="m" style="margin-top:12px">We confirm availability and payment with you on WhatsApp, then you collect at Game City or arrange delivery.</p>
+</section>
+<footer>Future Teyla Watches, Game City, Gaborone</footer>
+<script src="app.js"></script>
+<script>
+function rc(){const c=C(),ids=Object.keys(c);let t=0;
+document.getElementById('ci').innerHTML=ids.length?ids.map(id=>{const p=P.find(x=>x.id==id),n=c[id];t+=p.p*n;
+return `<div class="line"><span>${p.n}</span><span class="row"><button onclick="q(${id},-1)" aria-label="Remove one">-</button>${n}<button onclick="q(${id},1)" aria-label="Add one">+</button></span><span>${fmt(p.p*n)}</span></div>`}).join(''):'<p class="m">Your cart is empty. <a href="shop.html">Browse the shop</a>.</p>';
+document.getElementById('tot').textContent=fmt(t)}
+function q(id,d){const c=C();c[id]=(c[id]||0)+d;if(c[id]<=0)delete c[id];S(c);rc()}
+function order(){const c=C(),n=document.getElementById('nm').value.trim(),ids=Object.keys(c);
+if(!n||!ids.length){toast('Add items and enter your name first');return}
+let t=0;const l=ids.map(id=>{const p=P.find(x=>x.id==id);t+=p.p*c[id];return c[id]+' x '+p.n}).join('\n');
+open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent('New order from '+n+':\n'+l+'\nTotal: '+fmt(t)))}
+rc();
+</script>
+</body>
+</html>
